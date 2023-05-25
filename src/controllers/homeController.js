@@ -1,8 +1,12 @@
-const router = require('express').Router();
 // this is new instance of Router in Express
+const router = require('express').Router();
+const cubeManager = require('../managers/cubeManager')
 
 router.get('/', (req, res)=>{
-    res.render('index')
+    const cubes = cubeManager.getAll();
+
+    // render function  pass the cubes to 'index'-template like property cubes with cubes-array 
+    res.render('index', {cubes})
 });
 
 router.get('/about', (req, res)=>{
