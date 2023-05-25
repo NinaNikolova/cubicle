@@ -13,8 +13,8 @@ router.post('/create', (req, res) => {
 });
 router.get('/:cubeId/details', (req, res) => {
     const cubeId=req.params.cubeId;
-    const cubes = cubeManager.getAll();
-const cube= cubes.find(x=>x.id==cubeId)
+    const cube = cubeManager.getOne(cubeId);
+
     res.render('details', cube)
 })
 
