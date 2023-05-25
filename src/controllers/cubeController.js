@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const cubeManager = require('../managers/cubeManager')
+const cubeManager = require('../managers/cubeManager');
 
 // '/create' means '/cubes/create' -> '/cubes' comes from app.use('/cubes',cubeController) in index
 router.get('/create', (req, res) => {
@@ -11,6 +11,12 @@ router.post('/create', (req, res) => {
     cubeManager.create({ name, description, imageUrl, difficultyLevel: Number(difficultyLevel) });
     res.redirect('/')
 });
+router.get('/:cubeId/details', (req, res) => {
+    const cubeId=req.params.cubeId;
+    const cubes = cubeManager.getAll();
+const cube= cubes.find(x=>x.id==cubeId)
+    res.render('details', cube)
+})
 
 
 module.exports = router;
