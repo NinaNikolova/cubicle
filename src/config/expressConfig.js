@@ -4,7 +4,8 @@ function expressConfig(app) {
 
     // express config -use - middleware express.static -access to css and img
     app.use(express.static(path.resolve(__dirname, '../public')));
-    //add data from user input in req.body
+    
+    //add data from user input in req.body and parse to object query string
     app.use(express.urlencoded({extended:false}))
 
 }
