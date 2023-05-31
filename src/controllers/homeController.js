@@ -4,13 +4,13 @@ const cubeManager = require('../managers/cubeManager')
 
 router.get('/', (req, res)=>{
     const{search, from, to}=req.query;
-    const cubes = cubeManager.getAll(search, from, to);
+    // const cubes = cubeManager.getAll(search, from, to);
 
 // req.body - podadena na render data
 // req.query - querystring - all after ? before # Example: { search: 'gan', from: '1', to: '3' }
 // req.params.id -in routes /:id
     // render function  pass the cubes to 'index'-template like property cubes with cubes-array 
-    res.render('index', {cubes, search, from, to})
+    res.render('index', { search, from, to})
 });
 
 router.get('/about', (req, res)=>{
