@@ -3,6 +3,7 @@ const Cube = require('../models/Cube')
 
 exports.getAll = async (search, from, to) => {
     let result = await Cube.find().lean()
+    //TODO: use mongoose to filter in db
     if (search) {
         result = result.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
     }
