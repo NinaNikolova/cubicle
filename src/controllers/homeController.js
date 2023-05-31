@@ -10,7 +10,7 @@ router.get('/', async (req, res)=>{
 // req.query - querystring - all after ? before # Example: { search: 'gan', from: '1', to: '3' }
 // req.params.id -in routes /:id
 //     render function  pass the cubes to 'index'-template like property cubes with cubes-array 
-console.log(cubes)
+
     res.render('index', { cubes, search, from, to})
 });
 

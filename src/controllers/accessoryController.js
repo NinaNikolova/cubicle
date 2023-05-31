@@ -4,7 +4,7 @@ router.get('/create', (req, res)=>{
 })
 router.post('/create', (req, res)=>{
     const {name, imageUrl, description}= req.body;
-    console.log(name, imageUrl, description)
+    
     // TODO: add accessory data to db
     res.redirect('/')
 })
