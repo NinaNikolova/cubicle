@@ -16,7 +16,8 @@ exports.getAll = async (search, from, to) => {
     return result;
 }
 
-exports.getOne = (cubeId) => Cube.findById(cubeId)
+exports.getOne = (cubeId) => Cube.findById(cubeId);
+exports.getOneWithAccessories = (cubeId) => Cube.findById(cubeId).populate('accessories')
 exports.create = async (cubeData) => {
     // mongoose wry]a dokument cube - obekt na steroidi - object decorated with added properties -problem with handlebar
     const cube = new Cube(cubeData);
