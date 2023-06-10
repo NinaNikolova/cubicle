@@ -7,12 +7,14 @@ const userSchema = new mongoose.Schema({
     password: String,
 
 })
+// TODO: validate if user exits
 userSchema.virtual('repeatPassword')
     .set(function (value) {
         if (value !== this.password) {
             throw new mongoose.MongooseError('Password missmatch');
         }
     })
+    // s tozi hook se zakachame predi save in db
 userSchema.pre('save', async function () {
     const hash = await bcrypt.hash(this.password, 10)
     this.password = hash;

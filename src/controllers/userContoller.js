@@ -14,7 +14,14 @@ const{username, password, repeatPassword} = req.body;
 
 router.get('/login', (req, res) => {
     res.render('users/login')
-    res.redirect('/users/login')
+
+})
+router.post('/login', async (req, res) => {
+    const {username, password} = req.body;
+   const user =  await userManager.login(username, password);
+   console.log(user)
+    res.redirect('/')
+
 })
 
 
