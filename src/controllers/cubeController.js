@@ -8,8 +8,10 @@ router.get('/create', async (req, res) => {
     res.render('create')
 });
 router.post('/create', async (req, res) => {
+   
     const { name, description, imageUrl, difficultyLevel } = req.body;
-    await cubeManager.create({ name, description, imageUrl, difficultyLevel: Number(difficultyLevel) });
+     // we have to save info about owner - owner: req.user._id
+    await cubeManager.create({ name, description, imageUrl, difficultyLevel: Number(difficultyLevel), owner: req.user._id});
     res.redirect('/')
 });
 router.get('/:cubeId/details', async (req, res) => {
