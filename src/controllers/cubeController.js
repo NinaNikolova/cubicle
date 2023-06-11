@@ -4,7 +4,7 @@ const accessoryManager=require('../managers/accessoryManager')
 // cubController with inport of two managers
 // '/create' means '/cubes/create' -> '/cubes' comes from app.use('/cubes',cubeController) in index
 router.get('/create', async (req, res) => {
-  
+
     res.render('create')
 });
 router.post('/create', async (req, res) => {
