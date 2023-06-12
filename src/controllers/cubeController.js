@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const cubeManager = require('../managers/cubeManager');
-const accessoryManager = require('../managers/accessoryManager')
+const accessoryManager = require('../managers/accessoryManager');
+const {getDifficultyOptionsViewData} =require('../utils/viewHelpers')
 // cubController with inport of two managers
 // '/create' means '/cubes/create' -> '/cubes' comes from app.use('/cubes',cubeController) in index
 router.get('/create', async (req, res) => {
@@ -43,8 +44,8 @@ router.post('/:cubeId/attach-accessory', async (req, res) => {
 router.get('/:cubeId/delete', async (req, res) => {
     // when we try to give handlebars mongoose document, we need to use --> lean()
     let cube = await cubeManager.getOne(req.params.cubeId).lean();
-
-    res.render('cube/delete', { cube })
+const options = getDifficultyOptionsViewData(cube.difficultyLevel)
+    res.render('cube/delete', { cube, options })
 });
 router.post('/:cubeId/delete', async (req, res) => {
     // when we try to give handlebars mongoose document, we need to use --> lean()
@@ -52,11 +53,12 @@ router.post('/:cubeId/delete', async (req, res) => {
 
     res.redirect('/')
 });
+
 router.get('/:cubeId/edit', async (req, res) => {
     // when we try to give handlebars mongoose document, we need to use --> lean()
     let cube = await cubeManager.getOne(req.params.cubeId).lean();
-
-    res.render('cube/edit', { cube })
+const options = getDifficultyOptionsViewData(cube.difficultyLevel)
+    res.render('cube/edit', { cube, options })
 });
 router.post('/:cubeId/edit', async (req, res) => {
     // when we try to give handlebars mongoose document, we need to use --> lean()
