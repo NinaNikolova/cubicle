@@ -44,7 +44,27 @@ router.get('/:cubeId/delete', async (req, res) => {
     // when we try to give handlebars mongoose document, we need to use --> lean()
     let cube = await cubeManager.getOne(req.params.cubeId).lean();
 
-    res.render('cube/delete', {cube})
+    res.render('cube/delete', { cube })
+});
+router.post('/:cubeId/delete', async (req, res) => {
+    // when we try to give handlebars mongoose document, we need to use --> lean()
+    await cubeManager.delete(req.params.cubeId);
+
+    res.redirect('/')
+});
+router.get('/:cubeId/edit', async (req, res) => {
+    // when we try to give handlebars mongoose document, we need to use --> lean()
+    let cube = await cubeManager.getOne(req.params.cubeId).lean();
+
+    res.render('cube/edit', { cube })
+});
+router.post('/:cubeId/edit', async (req, res) => {
+    // when we try to give handlebars mongoose document, we need to use --> lean()
+    let cubeId = req.params.cubeId;
+    let cubeData = req.body;
+
+    await cubeManager.update(cubeId, cubeData)
+    res.redirect(`/cubes/${cubeId}/details`)
 });
 
 
