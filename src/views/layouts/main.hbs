@@ -34,7 +34,15 @@
         {{/if}}
       </ul>
     </header>
+    {{#if errorMessages}}
+      {{#each  errorMessages}}
+<div id="notifications">
 
+  <p id="notification-message">{{this}}</p>
+  
+</div>
+{{/each}}
+{{/if}}
     {{{body}}}
 
   </div>
